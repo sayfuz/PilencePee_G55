@@ -1,0 +1,21 @@
+{
+  "name": "pilencepee",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src"
+  },
+  "keywords": [],
+  "author": "Lina María Castañeda Cárdenas, Stiven Cabrera Linero, Jaime Andrés Azcarate Carmona, José Daniel Gutiérrez García, Mateo Rodríguez Marín",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
