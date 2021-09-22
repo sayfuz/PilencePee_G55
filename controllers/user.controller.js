@@ -17,15 +17,17 @@ function signUp(req, res) {
                         name: req.body.name,
                         last_name: req.body.last_name,
                         phone: req.body.phone,
+                        image: req.body.image,
                         email: req.body.email,
                         password: hash
                     }
 
                     const schema = {
-                        name: {type:"string", optional: false, min: "1", max: "150"},
-                        last_name: {type:"string", optional: false, min: "1", max: "150"},
-                        phone: {type: "number", optional: false},
-                        email: {type: "string", optional: false, min: "8", max: "80"},
+                        name: {type:"string", optional: false, min: "1"},
+                        last_name: {type:"string", optional: false, min: "1"},
+                        phone: {type:"number", optional: false},
+                        image: {type:"string", optional: true},
+                        email: {type: "string", optional: false, min: "10"},
                         password: {type: "string", optional: false, min: "8"}
                     }
                 

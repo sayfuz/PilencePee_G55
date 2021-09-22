@@ -6,13 +6,15 @@ function add(req, res) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        user_id: 1
+        image: req.body.image,
+        user_id: req.userData.user_id
     }
 
     const schema = {
         title: {type:"string", optional: false, min: "8", max: "150"},
         description: {type: "string", optional: false, min: "8", max: "800"},
-        price: {type: "number", optional: false}
+        price: {type: "number", optional: false},
+        image: {type:"string", optional: true}
     }
 
     const v = new Validator();
@@ -72,12 +74,14 @@ function update(req, res) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
+        image: req.body.image
     }
 
     const schema = {
         title: {type:"string", optional: false, min: "8", max: "150"},
         description: {type: "string", optional: false, min: "8", max: "800"},
-        price: {type: "number", optional: false}
+        price: {type: "number", optional: false},
+        image: {type:"string", optional: true}
     }
 
     const v = new Validator();
@@ -90,7 +94,7 @@ function update(req, res) {
         });
     }
     
-    const user_id = 1;
+    const user_id = req.userData.user_id;
 
     models.Service.update(updatedService, {where: {id: id, user_id: user_id}}).then(result => {
         res.status(201).json({
@@ -107,7 +111,7 @@ function update(req, res) {
 
 function del(req, res) {
     const id = req.params.id;
-    const user_id = 1;
+    const user_id = req.userData.user_id;
 
     models.Service.destroy({where: {id : id, user_id: user_id}}).then(result => {
         res.status(201).json({
