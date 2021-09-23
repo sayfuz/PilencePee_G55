@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2021 at 05:22 AM
+-- Generation Time: Sep 23, 2021 at 11:22 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -36,8 +36,8 @@ CREATE TABLE `sequelizemeta` (
 --
 
 INSERT INTO `sequelizemeta` (`name`) VALUES
-('20210917060742-create-service.js'),
-('20210917061154-create-user.js');
+('20210923055357-create-user.js'),
+('20210923055416-create-service.js');
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,8 @@ CREATE TABLE `services` (
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -66,8 +67,10 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `phone` int(11) DEFAULT NULL,
+  `role` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -103,13 +106,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

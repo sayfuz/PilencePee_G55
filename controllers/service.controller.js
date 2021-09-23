@@ -1,7 +1,7 @@
 const Validator = require('fastest-validator');
 const models = require('../models');
 
-function add(req, res) {
+function createService(req, res) {
     const service = {
         title: req.body.title,
         description: req.body.description,
@@ -40,19 +40,19 @@ function add(req, res) {
     });
 }
 
-function find(req, res) {
+function getServiceById(req, res) {
     const id = req.params.id;
     
     models.Service.findByPk(id).then(result => {
         res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
-            message: "Cannot list the services"
+            message: "Cannot found the service"
         });
     });
 }
 
-function list(req, res) {
+function getServices(req, res) {
     models.Service.findAll().then(result => {
         if(result) {
             res.status(200).json(result);
@@ -68,7 +68,7 @@ function list(req, res) {
     });
 }
 
-function update(req, res) {
+function updateServiceById(req, res) {
     const id = req.params.id;
     const updatedService = {
         title: req.body.title,
@@ -109,7 +109,7 @@ function update(req, res) {
     });
 }
 
-function del(req, res) {
+function deleteServiceById(req, res) {
     const id = req.params.id;
     const user_id = req.userData.user_id;
 
@@ -127,9 +127,9 @@ function del(req, res) {
 }
 
 module.exports = {
-    add: add,
-    find: find,
-    list: list,
-    update: update,
-    del: del
+    createService: createService,
+    getServiceById: getServiceById,
+    getServices: getServices,
+    updateServiceById: updateServiceById,
+    deleteServiceById: deleteServiceById  
 }

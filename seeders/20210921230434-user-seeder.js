@@ -7,6 +7,7 @@ module.exports = {
         name: 'Jaime Andrés',
         last_name: 'Azcarate Carmona',
         phone: 3175213008,
+        role: "root",
         email: 'jaimeandres196@hotmail.com',
         password: 'burgundy'
       },
@@ -14,6 +15,7 @@ module.exports = {
         name: 'Mateo',
         last_name: 'Rodríguez Marín',
         phone: 3122790701,
+        role: "root",
         email: 'mate-45@hotmail.com',
         password: 'burgundy'
       },
@@ -21,6 +23,7 @@ module.exports = {
         name: 'Lina María',
         last_name: 'Castañeda Cárdenas',
         phone: 3208942453,
+        role: "root",
         email: 'lina-mariacast@hotmail.com',
         password: 'burgundy'
       },
@@ -28,6 +31,7 @@ module.exports = {
         name: 'Stiven David',
         last_name: 'Cabrera Linero',
         phone: 3022188675,
+        role: "root",
         email: 'steven_cab@hotmail.com',
         password: 'burgundy'        
       }

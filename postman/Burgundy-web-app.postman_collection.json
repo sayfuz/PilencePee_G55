@@ -1,0 +1,463 @@
+{
+	"info": {
+		"_postman_id": "df1eaa3b-ad5a-41c6-b99a-2b5cef0de685",
+		"name": "Burgundy-web-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Stiven David\",\r\n    \"last_name\": \"Cabrera Linero\",\r\n    \"phone\": 3022188675,\r\n    \"email\": \"steven_cab3@hotmail.com\",\r\n    \"password\": \"burgundy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jaimeandres196@hotmail.com\",\r\n    \"password\": \"burgundy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzgwNTQ1LCJleHAiOjE2MzI0NjY5NDV9.KOHJ4Jp8h2mlo9vtuchonBRcSZBprnEc2IpsRK0NMbE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/jaime/Downloads/service.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/services/images/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"services",
+								"images",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/services/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"services",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/services/find/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"services",
+								"find",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzgwNTQ1LCJleHAiOjE2MzI0NjY5NDV9.KOHJ4Jp8h2mlo9vtuchonBRcSZBprnEc2IpsRK0NMbE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Service 03\",\r\n    \"description\": \"Service 03 description\",\r\n    \"price\": 3000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/services/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"services",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzgwNTQ1LCJleHAiOjE2MzI0NjY5NDV9.KOHJ4Jp8h2mlo9vtuchonBRcSZBprnEc2IpsRK0NMbE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Service 01\",\r\n    \"description\": \"Service 01 description\",\r\n    \"price\": 1000,\r\n    \"image\": \"1632381832893.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/services/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"services",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzgwNTQ1LCJleHAiOjE2MzI0NjY5NDV9.KOHJ4Jp8h2mlo9vtuchonBRcSZBprnEc2IpsRK0NMbE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/services/delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"services",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzg3NDY2LCJleHAiOjE2MzI0NzM4NjZ9.TI9sugumZk7a-QBsU_sRhGNPiuShEXsno6prbTVX7eo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzg3NDY2LCJleHAiOjE2MzI0NzM4NjZ9.TI9sugumZk7a-QBsU_sRhGNPiuShEXsno6prbTVX7eo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/find/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"find",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzgzODQ3LCJleHAiOjE2MzI0NzAyNDd9.tir77nr-yECqHABLB-31iolModSV00EQ4L8k1XVLP3I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Stiven David\",\r\n    \"last_name\": \"Cabrera Linero\",\r\n    \"phone\": 3022188675,\r\n    \"role\": \"root\",\r\n    \"email\": \"steven_cab5@hotmail.com\",\r\n    \"password\": \"burgundy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzg3NDY2LCJleHAiOjE2MzI0NzM4NjZ9.TI9sugumZk7a-QBsU_sRhGNPiuShEXsno6prbTVX7eo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Stiven David\",\r\n    \"last_name\": \"Cabrera Linero\",\r\n    \"phone\": 3022188675,\r\n    \"role\": \"user\",\r\n    \"email\": \"steven_cab5@hotmail.com\",\r\n    \"password\": \"burgundy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/update/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"update",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphaW1lYW5kcmVzMTk2QGhvdG1haWwuY29tIiwidXNlcl9pZCI6MSwiaWF0IjoxNjMyMzg4Mzk3LCJleHAiOjE2MzI0NzQ3OTd9.6N3tlfBJsEqshr_QXOmASuFWIQpLC8d8UdsGvK416JE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/delete/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"delete",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

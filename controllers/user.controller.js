@@ -1,10 +1,8 @@
 const models = require('../models');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const Validator = require('fastest-validator');
 
-function signUp(req, res) {
-    
+function createUser(req, res) {
     models.User.findOne({where: {email: req.body.email}}).then(result => {
         if (result) {
             res.status(409).json({
@@ -17,6 +15,7 @@ function signUp(req, res) {
                         name: req.body.name,
                         last_name: req.body.last_name,
                         phone: req.body.phone,
+                        role: req.body.role,
                         image: req.body.image,
                         email: req.body.email,
                         password: hash
@@ -27,6 +26,7 @@ function signUp(req, res) {
                         last_name: {type:"string", optional: false, min: "1"},
                         phone: {type:"number", optional: false},
                         image: {type:"string", optional: true},
+                        role: {type: "string", optional: false, enum: ["user", "admin", "root"]},
                         email: {type: "string", optional: false, min: "10"},
                         password: {type: "string", optional: false, min: "8"}
                     }
@@ -60,39 +60,103 @@ function signUp(req, res) {
     });
 }
 
-function login(req, res) {
-    models.User.findOne({where: {email: req.body.email}}).then(user => {
-        if (user == null) {
-            res.status(401).json({
-                message: "Invalid credentials"
-            });
+function getUserById(req, res) {
+    const id = req.params.id;
+    
+    models.User.findByPk(id).then(result => {
+        res.status(200).json(result);
+    }).catch(error => {
+        res.status(500).json({
+            message: "Cannot found the user"
+        });
+    });
+}
+
+function getUsers(req, res) {
+    models.User.findAll().then(result => {
+        if(result) {
+            res.status(200).json(result);
         } else {
-            bcrypt.compare(req.body.password, user.password, function(err, result) {
-                if (result) {
-                    const token = jwt.sign({
-                        email: user.email,
-                        user_id: user.id
-                    }, process.env.JWT_KEY, function(err, token) {
-                        res.status(200).json({
-                            message: "Authentication successful",
-                            token: token
-                        });
-                    });
-                } else {
-                    res.status(401).json({
-                        message: "Invalid credentials"
-                    });                    
-                }
+            res.status(404).json({
+                message: "Cannot found the users"
             });
         }
     }).catch(error => {
         res.status(500).json({
-            message: "Invalid credentials"
+            message: "Cannot list the users"
+        });
+    });
+}
+
+function updateUserById(req, res) {
+    bcrypt.genSalt(10, function(err, salt) {    
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+            const id = req.params.id;
+            const updatedUser = {
+                name: req.body.name,
+                last_name: req.body.last_name,
+                phone: req.body.phone,
+                role: req.body.role,
+                image: req.body.image,
+                email: req.body.email,
+                password: hash
+            }
+
+            const schema = {
+                name: {type:"string", optional: false, min: "1"},
+                last_name: {type:"string", optional: false, min: "1"},
+                phone: {type:"number", optional: false},
+                image: {type:"string", optional: true},
+                role: {type: "string", optional: false, enum: ["user", "admin", "root"]},
+                email: {type: "string", optional: false, min: "10"},
+                password: {type: "string", optional: false, min: "8"}
+            }  
+            
+            const v = new Validator();
+            const validationResponse = v.validate(updatedUser, schema);
+
+            if(validationResponse != true) {
+                return res.status(400).json({
+                    message: "Validation failed",
+                    error: validationResponse
+                });
+            }
+            
+            models.User.update(updatedUser, {where: {id: id}}).then(result => {
+                res.status(201).json({
+                    message: "User information updated successfully",
+                    service: updatedUser
+                });
+            }).catch(error => {
+                res.status(500).json({
+                    message: "Cannot update the user information",
+                    error: error
+                });
+            });            
+        });
+    });    
+}
+
+function deleteUserById(req, res) {
+    const id = req.params.id;
+
+    models.User.destroy({where: {id : id}}).then(result => {
+        res.status(201).json({
+            message: "User deleted successfully",
+            user: result
+        });
+    }).catch(error => {
+        res.status(500).json({
+            message: "Cannot delete the user information",
+            error: error
         });
     });
 }
 
 module.exports = {
-    signUp: signUp,
-    login: login
+    createUser: createUser,
+    getUserById: getUserById,
+    getUsers: getUsers,
+    updateUserById: updateUserById,
+    deleteUserById: deleteUserById  
 }

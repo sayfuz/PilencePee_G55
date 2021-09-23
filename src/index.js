@@ -1,8 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
-const servicesRoute = require('../routes/services');
-const usersRoute = require('../routes/user')
-const imageRoute = require('../routes/images');
+const servicesRoute = require('../routes/services.routes');
+const authRoute = require('../routes/auth.routes')
+const usersRoute = require('../routes/users.routes')
+const imageRoute = require('../routes/images.routes');
 
 // Initializations
 const app = express();
@@ -18,7 +19,8 @@ app.use('/api/services/images/uploads', express.static('uploads'))
 
 // Routes
 app.use('/api/services/', servicesRoute);
-app.use('/api/user/', usersRoute);
+app.use('/api/auth/', authRoute);
+app.use('/api/users/', usersRoute);
 app.use('/api/services/images/', imageRoute);
 
 // Server is listening

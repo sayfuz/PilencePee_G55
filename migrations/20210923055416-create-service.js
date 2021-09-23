@@ -14,7 +14,7 @@ module.exports = {
       },
       description: {
         allowNull: false,
-        type: Sequelize.TEXT        
+        type: Sequelize.TEXT
       },
       price: {
         allowNull: false,

@@ -17,8 +17,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       phone: {
-        allowNull: false,
         type: Sequelize.INTEGER
+      },
+      role: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       image: {
         type: Sequelize.STRING
