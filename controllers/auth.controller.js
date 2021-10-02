@@ -17,7 +17,7 @@ function signUp(req, res) {
                         last_name: req.body.last_name,
                         phone: req.body.phone,
                         role: null,
-                        image: req.body.image,
+                        image: null,
                         email: req.body.email,
                         password: hash
                     }
@@ -61,7 +61,7 @@ function signUp(req, res) {
     });
 }
 
-function login(req, res) {
+function signIn(req, res) {
     models.User.findOne({where: {email: req.body.email}}).then(user => {
         if (user == null) {
             res.status(401).json({
@@ -99,5 +99,5 @@ function login(req, res) {
 
 module.exports = {
     signUp: signUp,
-    login: login
+    signIn: signIn
 }
