@@ -5,6 +5,6 @@ const checkAuthMiddleware = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.post('/upload', imageUploader.upload.single('image'), imageController.upload); // checkAuthMiddleware.checkAuth
+router.post('/upload', checkAuthMiddleware.checkAuth, imageUploader.upload.single('image'), imageController.upload);
 
 module.exports = router;
