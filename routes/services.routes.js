@@ -5,10 +5,10 @@ const checkRoleMiddleware = require('../middleware/check-role');
 
 const router = express.Router();
 
-router.post('/add', [checkAuthMiddleware.checkAuth, checkRoleMiddleware.isAdmin], servicesController.createService);
+router.post('/add', servicesController.createService); // [checkAuthMiddleware.checkAuth, checkRoleMiddleware.isAdmin]
 router.get('/list', servicesController.getServices);
 router.get('/find/:id', servicesController.getServiceById);
-router.patch('/update/:id', [checkAuthMiddleware.checkAuth, checkRoleMiddleware.isAdmin], servicesController.updateServiceById);
-router.delete('/delete/:id', [checkAuthMiddleware.checkAuth, checkRoleMiddleware.isAdmin], servicesController.deleteServiceById);
+router.patch('/update/:id', servicesController.updateServiceById); // [checkAuthMiddleware.checkAuth, checkRoleMiddleware.isAdmin]
+router.delete('/delete/:id', servicesController.deleteServiceById); // [checkAuthMiddleware.checkAuth, checkRoleMiddleware.isAdmin]
 
 module.exports = router;
