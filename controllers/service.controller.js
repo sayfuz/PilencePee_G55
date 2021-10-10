@@ -6,8 +6,8 @@ function createService(req, res) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        image: req.body.image,
-        user_id: req.userData.user_id
+        image: null,
+        user_id: 3
     }
 
     const schema = {
@@ -74,7 +74,7 @@ function updateServiceById(req, res) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        image: req.body.image
+        image: null
     }
 
     const schema = {
@@ -94,7 +94,7 @@ function updateServiceById(req, res) {
         });
     }
     
-    const user_id = req.userData.user_id;
+    const user_id = 3;
 
     models.Service.update(updatedService, {where: {id: id, user_id: user_id}}).then(result => {
         res.status(201).json({
@@ -111,7 +111,7 @@ function updateServiceById(req, res) {
 
 function deleteServiceById(req, res) {
     const id = req.params.id;
-    const user_id = req.userData.user_id;
+    const user_id = 3;
 
     models.Service.destroy({where: {id : id, user_id: user_id}}).then(result => {
         res.status(201).json({
