@@ -1,0 +1,27 @@
+{
+  "name": "burgundy",
+  "version": "1.0.0",
+  "description": "Burgundy REST API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jaime Andrés Azcarate Carmona, José Daniel Gutiérrez García, Mateo Rodríguez Marín, Lina María Castañeda Cárdenas, Stiven David Cabrera Linero",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fastest-validator": "^1.11.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
